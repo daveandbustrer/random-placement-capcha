@@ -10,7 +10,7 @@
         display: flex;
         justify-content: space-between;
         width: 250px;
-        height: 75px;
+        height: 50px;
         border: 2px black solid;
         align-items: center;
         border-radius: 10px;
@@ -31,8 +31,11 @@
     </style>
   </head>
   <body>
+    <div id="title" style="justify-items: center">
+      <h1><strong>click the captcha to proceed</strong></h1>
+    </div>
     <div id="CAPTCHA" class="box">
-      <input type="checkbox" />
+      <input type="checkbox" id="verify" />
       <p style="margin-left: -5px; margin-right: 5px">I'm not a robot</p>
       <img src="imgs/OIP-Photoroom.png" height="75px" width="75px" />
     </div>
@@ -42,6 +45,7 @@
       const heighte = CAPTCHA.offsetHeight;
       const height = window.innerHeight;
       const width = window.innerWidth;
+      const cb = document.getElementById("verify");
       function distance(x1, y1, x2, y2) {
         return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
       }
@@ -60,11 +64,19 @@
         const centerY = rect.top + rect.height / 2;
         const dist = distance(event.clientX, event.clientY, centerX, centerY);
 
-        if (dist < 111) {
+        if (dist < 114) {
           const pos = rand_pos();
           console.log("too close");
           CAPTCHA.style.left = pos.x;
           CAPTCHA.style.top = pos.y;
+        }
+      });
+      cb.addEventListener("change", () => {
+        const signal = cb.checked;
+
+        if (signal) {
+          window.location.replace("https://crescent.hackclub.com/projects/291");
+          cb.checked = false;
         }
       });
     </script>
