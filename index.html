@@ -75,12 +75,8 @@
         const signal = cb.checked;
 
         if (signal) {
-          history.pushState(null, "", location.href);
-          window.addEventListener("popstate", () => {
-            window.location.replace(
-              "https://crescent.hackclub.com/projects/291",
-            );
-          });
+          window.location.replace("https://crescent.hackclub.com/projects/291");
+          cb.checked = false;
         }
       });
     </script>
